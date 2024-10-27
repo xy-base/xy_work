@@ -30,10 +30,6 @@ from xy_argparse.ArgParse import ArgParse
 class Work(ArgParse):
     settings: Settings | None = Settings()
     config_relative_path: Path = Path("config/xy_work.toml")
-    command_choices = [
-        "project",
-        "runner",
-    ]
 
     def __init__(self):
         self.prog = xy_work.__name__
@@ -45,8 +41,6 @@ class Work(ArgParse):
         self.parse_arguments()
         if self.command:
             self.run_arguments()
-        else:
-            self.parser.print_help()
 
     @property
     def command(self):

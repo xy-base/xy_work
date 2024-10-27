@@ -21,14 +21,9 @@ General working module.
 - <a href="https://github.com/xy-base/xy_work.git" target="_blank">Github</a>  
 - <a href="https://gitee.com/xy-base/xy_work.git" target="_blank">Gitee</a>
 
-## 安装
+## Installation
 
-```bash
-# bash
-pip install xy_work
-```
-
-## How to use
+##### 1.General
 
 ```bash
 # bash
@@ -55,13 +50,46 @@ xy_work -c runner
 
 ```
 
+##### 2.Extension
+
+```python
+# main.py
+
+from xy_work.Work import Work
+
+class DemoExtWork(Work):
+
+    def __init__(self):
+        self.prog = "xy_work扩展"
+        self.description = f""">>>>>>>>>>>> ext_work - v1.0.0 <<<<<<<<<<<<<"""
+
+if __name__ == "__main__":
+    work = DemoExtWork()
+    work.main()
+
+```
+
+```bash
+# bash
+python main.py -h
+# usage: xy_work扩展 [-h] [-c [COMMAND]] [-n [NAME]]
+
+# >>>>>>>>>>>> ext_work - v1.0.0 <<<<<<<<<<<<<
+
+# options:
+#   -h, --help            show this help message and exit
+#   -c [COMMAND], --command [COMMAND]
+#                         命令: -----project => 项目 -----runner => 运行启动器
+#   -n [NAME], --name [NAME]
+#                         项目名称 仅支持英文(当[command=project])
+```
+
 ## License
 xy_work is licensed under the <Mulan Permissive Software License，Version 2>. See the [LICENSE](../LICENSE) file for more info.
 
 ## Donate
 
 If you think these tools are pretty good, Can you please have a cup of coffee?  
-
 ![Pay-Total](./Pay-Total.png)  
 
 

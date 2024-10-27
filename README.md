@@ -29,6 +29,7 @@ pip install xy_work
 
 ## 使用
 
+##### 1.常用
 ```bash
 # bash
 xy_work -h
@@ -52,6 +53,40 @@ xy_work -c runner
 # >>>>>>>>>>>> xy_test_work - v0.0.1 <<<<<<<<<<<<<
 # Hello World!!!
 
+```
+
+##### 2.扩展
+
+```python
+# main.py
+
+from xy_work.Work import Work
+
+class DemoExtWork(Work):
+
+    def __init__(self):
+        self.prog = "xy_work扩展"
+        self.description = f""">>>>>>>>>>>> ext_work - v1.0.0 <<<<<<<<<<<<<"""
+
+if __name__ == "__main__":
+    work = DemoExtWork()
+    work.main()
+
+```
+
+```bash
+# bash
+python main.py -h
+# usage: xy_work扩展 [-h] [-c [COMMAND]] [-n [NAME]]
+
+# >>>>>>>>>>>> ext_work - v1.0.0 <<<<<<<<<<<<<
+
+# options:
+#   -h, --help            show this help message and exit
+#   -c [COMMAND], --command [COMMAND]
+#                         命令: -----project => 项目 -----runner => 运行启动器
+#   -n [NAME], --name [NAME]
+#                         项目名称 仅支持英文(当[command=project])
 ```
 
 ## 许可证
