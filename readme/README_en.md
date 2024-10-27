@@ -24,12 +24,14 @@ General working module.
 ## 安装
 
 ```bash
+# bash
 pip install xy_work
 ```
 
 ## How to use
 
 ```bash
+# bash
 xy_work -h
 # usage: xy_work [-h] [-c [{project,runner}]]
 #

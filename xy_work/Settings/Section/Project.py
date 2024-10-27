@@ -1,14 +1,14 @@
 # -*- coding: UTF-8 -*-
-__author__ = "yuyangit"
+__author__ = "余洋"
 __doc__ = "Runner"
-''' 
+""" 
  * @Author: yuyangit yuyangit.0515@qq.com
  * @Date: 2024-10-19 20:22:03
  * @LastEditors: yuyangit yuyangit.0515@qq.com
  * @LastEditTime: 2024-10-21 19:55:13
  * @FilePath: /xy_work/xy_work/Settings/Section/Project.py
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- '''
+ """
 """
   * @File    :   Runner.py
   * @Time    :   2023/04/24 15:30:01

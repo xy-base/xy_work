@@ -23,12 +23,14 @@
 ## 安装
 
 ```bash
+# bash
 pip install xy_work
 ```
 
 ## 使用
 
 ```bash
+# bash
 xy_work -h
 # usage: xy_work [-h] [-c [{project,runner}]]
 #

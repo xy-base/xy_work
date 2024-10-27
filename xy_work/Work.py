@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-__author__ = "yuyangit"
+__author__ = "余洋"
 __doc__ = "Work"
 """
   * @File    :   Work.py
@@ -137,7 +137,7 @@ class Work:
                     """
                 )
             module_data = ModuleData()
-            
+
             settings_toml_template_string = (
                 module_data.xy_work_toml_template_path.read_text()
             )
@@ -160,14 +160,14 @@ class Work:
                     settings_toml_path.write_text(settings_toml_string)
                 except:
                     shutil.rmtree(project_path)
-                    raise IOError(f"写入配置信息到项目配置文件失败! Runner.py => {settings_toml_path}")
+                    raise IOError(
+                        f"写入配置信息到项目配置文件失败! Runner.py => {settings_toml_path}"
+                    )
                 try:
                     self.settings.load(settings_cfg_path=settings_toml_path)
                 except:
                     pass
-                if self.settings.runner and isinstance(
-                    self.settings.runner.path, Path
-                ):
+                if self.settings.runner and isinstance(self.settings.runner.path, Path):
                     runner_path = self.settings.runner.path
                     if not runner_path.is_absolute():
                         runner_path = settings_toml_path.parent.joinpath(
@@ -216,7 +216,9 @@ class Work:
             else:
                 raise FileNotFoundError("项目创建失败 => 原因: 创建项目配置文件失败!!!")
         else:
-            raise PermissionError("请保证用户对当前目录拥有 [可读, 可写, 可执行] 的权限")
+            raise PermissionError(
+                "请保证用户对当前目录拥有 [可读, 可写, 可执行] 的权限"
+            )
 
     def runner(
         self,
@@ -280,7 +282,9 @@ class Work:
             ):
                 runner_module_class_name = self.settings.runner.runner
             else:
-                raise ModuleNotFoundError(f"运行模块(runner_module_class_name)不存在或者无法调用")
+                raise ModuleNotFoundError(
+                    f"运行模块(runner_module_class_name)不存在或者无法调用"
+                )
 
         if (
             not self.settings.configure
@@ -323,7 +327,9 @@ class Work:
                         f"!!! -> 服务启动失败， 模块({runner_module_name})中不存在({runner_class_name})类"
                     )
             else:
-                raise ValueError(f"服务启动的模块和类至少需要2个名字: 例如 => Runner.Runner ")
+                raise ValueError(
+                    f"服务启动的模块和类至少需要2个名字: 例如 => Runner.Runner "
+                )
         else:
             raise ValueError(
                 f"无法使用服务启动路径({runner_path})和服务启动的模块和类({runner_module_class_name})"

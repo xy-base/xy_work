@@ -24,6 +24,7 @@
 ## 安裝
 
 ```bash
+# bash
 pip install xy_work
 ```
 
@@ -31,6 +32,7 @@ pip install xy_work
 ```python
 
 ```bash
+# bash
 xy_work -h
 # usage: xy_work [-h] [-c [{project,runner}]]
 #
