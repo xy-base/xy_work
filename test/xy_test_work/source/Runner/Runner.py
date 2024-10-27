@@ -1,12 +1,11 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 __doc__ = "Runner.py"
 __version__ = "0.0.1"
 
-import xy_work
 from xy_work.Work import Work
 
 
-class Runner:
+class Runner(Work):
     @property
     def __version__(self) -> str:
         return "0.0.1"
@@ -14,19 +13,8 @@ class Runner:
     def get_name(self) -> str:
         return "xy_test_work"
 
-    @property
-    def parser_key(self) -> str:
-        return Work().parser_key
-
     def __init__(self, *args, **kwargs) -> None:
-        parser = kwargs.get(self.parser_key)
-        xy_work_argparser_description: str = f""">>>>>>>>>>>> {self.get_name()} - v{xy_work.__version__} <<<<<<<<<<<<<"""
-        if not parser:
-            parser = Work().argparser_make(
-                self.get_name(), xy_work_argparser_description
-            )
-        self.parser = parser
-
+        xy_work_argparser_description: str = f""">>>>>>>>>>>> {self.get_name()} - v{self.__version__} <<<<<<<<<<<<<"""
         print(xy_work_argparser_description)
-        print("")
+        print()
         print("Hello World!!!")

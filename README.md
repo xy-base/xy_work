@@ -48,8 +48,8 @@ xy_work -n xy_test_work -c project
 
 cd xy_test_work
 
-xy_work
-# >>>>>>>>>>>> xy_test_work - v1.0.1 <<<<<<<<<<<<<
+xy_work -c runner
+# >>>>>>>>>>>> xy_test_work - v0.0.1 <<<<<<<<<<<<<
 # Hello World!!!
 
 ```

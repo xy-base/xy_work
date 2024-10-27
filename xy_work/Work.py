@@ -17,101 +17,88 @@ import logging
 import shutil
 import xy_work
 from .Settings.Settings import Settings
-from xy_configure.Configure import Configure
 from datetime import datetime
 import sys
 import re
-from argparse import ArgumentParser
 from .ModuleData import ModuleData
+from argparse import Namespace
+
 from xy_file.File import File
+from xy_argparse.ArgParse import ArgParse
 
 
-class Work:
+class Work(ArgParse):
     settings: Settings | None = Settings()
-    prog: str = xy_work.__name__
-    description: str = (
-        f""">>>>>>>>>>>> {xy_work.__name__} - v{xy_work.__version__} <<<<<<<<<<<<<"""
-    )
     config_relative_path: Path = Path("config/xy_work.toml")
-    parser_key = "xy_work_parser"
     command_choices = [
         "project",
         "runner",
     ]
 
-    def argparser_make(
-        self,
-        prog: str | None = None,
-        description: str | None = None,
-        *args,
-        **kwargs,
-    ) -> ArgumentParser:
-        if not prog:
-            prog = self.prog
-        if not description:
-            description = self.description
-        parser: ArgumentParser = ArgumentParser(
-            prog=prog,
-            description=description,
-            exit_on_error=False,
-        )
-        parser.add_argument(
-            "-c",
-            "--command",
-            type=str,
-            help="""
+    def __init__(self):
+        self.prog = xy_work.__name__
+        self.description = f""">>>>>>>>>>>> {xy_work.__name__} - v{xy_work.__version__} <<<<<<<<<<<<<"""
+
+    def main(self):
+        self.default_parser()
+        self.add_arguments()
+        self.parse_arguments()
+        if self.command:
+            self.run_arguments()
+        else:
+            self.parser.print_help()
+
+    @property
+    def command(self):
+        arguments = self.arguments()
+        if isinstance(arguments, Namespace):
+            return arguments.command
+        return None
+
+    @property
+    def name(self):
+        arguments = self.arguments()
+        if isinstance(arguments, Namespace):
+            return arguments.name
+        return None
+
+    def add_arguments(self):
+        self.add_argument(
+            flag="-c",
+            name="--command",
+            help_text="""
                 命令:
                 -----project => 项目
                 -----runner  => 运行启动器
             """,
-            choices=self.command_choices,
-            required=False,
-            nargs="?",
-            default="runner",
         )
-        return parser
-
-    def main(self, *args, **kwargs):
-        command = ""
-        parser = self.argparser_make(
-            prog=self.prog,
-            description=self.description,
-            args=args,
-            kwargs=kwargs,
-        )
-        try:
-            args, _ = parser.parse_known_args()
-            command = args.command
-        except:
-            pass
-
-        match command:
-            case "project":
-                self.project(xy_work_parser=parser, args=args, kwargs=kwargs)
-            case "runner":
-                self.runner(xy_work_parser=parser, args=args, kwargs=kwargs)
-            case _:
-                print("请输入 -c/--command 命令参数")
-
-    def project(self, *args, **kwargs):
-        project_parser = self.argparser_make(
-            prog=self.prog,
-            description=self.description,
-            args=args,
-            kwargs=kwargs,
-        )
-        project_parser.add_argument(
-            "-n",
-            "--name",
-            type=str,
-            help="""
-                项目名称 仅支持英文:
+        self.add_argument(
+            flag="-n",
+            name="--name",
+            help_text="""
+                项目名称 仅支持英文(当[command=project])
             """,
-            required=True,
         )
-        name = project_parser.parse_args().name
+
+    def on_arguments(
+        self,
+        name,
+        value,
+        arguments=None,
+    ):
+        if name == "command":
+            if value == "project":
+                self.project()
+                return False
+            elif value == "runner":
+                self.runner()
+                return False
+        return True
+
+    def project(self):
+        name = self.name
         if not name:
-            raise ValueError("传入的项目名称参数 -n/--name 仅支持英文")
+            raise ValueError("请传入的项目名称参数 -n/--name 仅支持英文")
         zh_pattern = re.compile("[\u4e00-\u9fa5]+")
         match = zh_pattern.search(name)
         if match:
@@ -222,22 +209,11 @@ class Work:
 
     def runner(
         self,
-        settings_cfg_file_path: Path | None = None,
-        runner_path: Path | None = None,
-        runner_module_class_name: str = "Runner.Runner",
-        strict: bool = True,
-        auto_create_path: bool = False,
-        *args,
-        **kwargs,
     ):
-        if (
-            not Configure.check_config_file_path(
-                config_file_path=settings_cfg_file_path
-            )
-            or not Path(settings_cfg_file_path).exists()
-            or os.access(settings_cfg_file_path, os.R_OK)
-        ):
-            settings_cfg_file_path = Path.cwd().joinpath(self.config_relative_path)
+        settings_cfg_file_path = Path.cwd().joinpath(self.config_relative_path)
+        runner_path: Path | None = None
+        runner_module_class_name: str = "Runner.Runner"
+
         if (
             not settings_cfg_file_path
             or not settings_cfg_file_path.exists()
@@ -254,15 +230,11 @@ class Work:
                     settings_cfg_file_path = env_settings_cfg_file_path
         self.settings.load(
             settings_cfg_path=settings_cfg_file_path,
-            strict=strict,
-            auto_create_path=auto_create_path,
         )
         if not settings_cfg_file_path and self.settings.default_cfg_relative_path:
             settings_cfg_file_path = self.settings.default_cfg_relative_path
         self.settings.load(
             settings_cfg_path=settings_cfg_file_path,
-            strict=strict,
-            auto_create_path=auto_create_path,
         )
         if not runner_path or not runner_path.exists():
             if self.settings.runner and self.settings.runner.path:
@@ -310,7 +282,7 @@ class Work:
                 if runner_module and hasattr(runner_module, runner_class_name):
                     runner_class = getattr(runner_module, runner_class_name)
                     if runner_class and callable(runner_class):
-                        runner_class(*args, **kwargs)
+                        runner_class()
                         logging.info(
                             f"""
                             >>>> {xy_work.__name__} - v{xy_work.__version__}
