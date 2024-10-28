@@ -20,6 +20,10 @@ description = "xy_test_work"
 # 项目路径
 path = "/mnt/bs-media/Workspace/project/opensource/xy-base/xy_work/test/xy_test_work"
 
+backup_path = "../workspace/backup"
+
+data_path = "../data/data.txt"
+
 # ######################## xy_work运行配置 ###########################
 
 [xy_work_runner]

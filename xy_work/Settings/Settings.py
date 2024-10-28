@@ -17,12 +17,12 @@ from .Section.Project import Project
 
 
 class Settings(xy_s):
-    project: Project | None = Project()
-    runner: Runner | None = Runner()
+    project: Project | None
+    runner: Runner | None
     GLOBAL_CFG_SETTINGS_PATH_KEY = "__xy_work_cfg_path_key"
     default_cfg_relative_path: Path = Path("config/xy_work.toml")
 
     def reload(self, settings_cfg_path: Path):
         super().reload(settings_cfg_path)
-        self.project = self.__make_section(Project)
-        self.runner = self.__make_section(Runner)
+        self.project = self.make_section(Project)
+        self.runner = self.make_section(Runner)

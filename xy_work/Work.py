@@ -29,7 +29,6 @@ from xy_argparse.ArgParse import ArgParse
 
 class Work(ArgParse):
     settings: Settings | None = Settings()
-    config_relative_path: Path = Path("config/xy_work.toml")
 
     def __init__(self):
         self.prog = xy_work.__name__
@@ -39,8 +38,7 @@ class Work(ArgParse):
         self.default_parser()
         self.add_arguments()
         self.parse_arguments()
-        if self.command:
-            self.run_arguments()
+        self.run_arguments()
 
     @property
     def command(self):
@@ -84,9 +82,7 @@ class Work(ArgParse):
             if value == "project":
                 self.project()
                 return False
-            elif value == "runner":
-                self.runner()
-                return False
+        self.runner()
         return True
 
     def project(self):
@@ -109,7 +105,9 @@ class Work(ArgParse):
                 raise FileExistsError(
                     f"工程目录 [ {project_path} ] 已存在，请进入到其他符合要求的目录进行项目创建"
                 )
-            settings_toml_path = project_path.joinpath(self.config_relative_path)
+            settings_toml_path = project_path.joinpath(
+                self.settings.default_cfg_relative_path
+            )
             if settings_toml_path.exists():
                 raise FileExistsError(
                     f"""
@@ -204,7 +202,9 @@ class Work(ArgParse):
     def runner(
         self,
     ):
-        settings_cfg_file_path = Path.cwd().joinpath(self.config_relative_path)
+        settings_cfg_file_path = Path.cwd().joinpath(
+            self.settings.default_cfg_relative_path
+        )
         runner_path: Path | None = None
         runner_module_class_name: str = "Runner.Runner"
 
