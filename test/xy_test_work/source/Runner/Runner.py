@@ -17,10 +17,11 @@ class Runner(Work):
         return "xy_test_work"
 
     def __init__(self, *args, **kwargs) -> None:
-        self.settings.load(self.settings.default_cfg_relative_path)
         xy_work_argparser_description: str = (
             f""">>>>>>>>>>>> {self.get_name()} - v{self.__version__} <<<<<<<<<<<<<"""
         )
         print(xy_work_argparser_description)
         print()
-        print(f"开始备份文件 {type(self.settings.project)}")
+        print(f"开始备份文件 {self.settings.project.data_path}")
+        print("到   ========>>>>>>> ")
+        print(f"{self.settings.backup.path}")

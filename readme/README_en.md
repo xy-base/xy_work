@@ -84,6 +84,10 @@ python main.py -h
 #                         项目名称 仅支持英文(当[command=project])
 ```
 
+##### 3.Configuration Customization
+
+> [Sample (xy_test_work)](../test/xy_test_work/)
+
 ## License
 xy_work is licensed under the <Mulan Permissive Software License，Version 2>. See the [LICENSE](../LICENSE) file for more info.
 

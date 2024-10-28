@@ -83,7 +83,7 @@ class Work(ArgParse):
                 self.project()
                 return False
         self.runner()
-        return True
+        return False
 
     def project(self):
         name = self.name
