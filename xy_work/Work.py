@@ -31,8 +31,8 @@ class Work(ArgParse):
     settings: Settings | None = Settings()
 
     def __init__(self):
-        self.prog = xy_work.__name__
-        self.description = f""">>>>>>>>>>>> {xy_work.__name__} - v{xy_work.__version__} <<<<<<<<<<<<<"""
+        self.quick_default_info(xy_work.__name__)
+        self.description = "python工作应用"
 
     def main(self):
         self.default_parser()
