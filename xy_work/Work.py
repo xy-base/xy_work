@@ -164,7 +164,7 @@ class Work(ArgParse):
                         ):
                             runner_py_string = (
                                 module_data.runner_py_template_path.read_text().format(
-                                    xy_work_project_name=name
+                                    project_name=name
                                 )
                             )
                             try:

@@ -11,10 +11,10 @@ class Runner(Work):
         return __version__
 
     def get_name(self) -> str:
-        return "{project_name}"
+        return "xy_demo"
 
     def __init__(self, *args, **kwargs) -> None:
-        description: str = f""">>>>>>>>>>>> {{self.get_name()}} - v{{self.__version__}} <<<<<<<<<<<<<"""
+        description: str = f""">>>>>>>>>>>> {self.get_name()} - v{self.__version__} <<<<<<<<<<<<<"""
         print(description)
         print()
         print("Hello World!!!")

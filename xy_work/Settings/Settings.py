@@ -17,8 +17,8 @@ from .Section.Project import Project
 
 
 class Settings(xy_s):
-    project: Project | None
-    runner: Runner | None
+    project: Project | None = Project()
+    runner: Runner | None = Runner()
     GLOBAL_CFG_SETTINGS_PATH_KEY = "__xy_work_cfg_path_key"
     default_cfg_relative_path: Path = Path("config/xy_work.toml")
 
