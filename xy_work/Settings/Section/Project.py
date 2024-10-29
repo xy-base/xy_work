@@ -34,7 +34,7 @@ class Project(Section):
     path: Path | None
 
     def get_name(self) -> str | None:
-        return "xy_work_project"
+        return "project"
 
     def _load(self):
         ##################### fetch_path ###############

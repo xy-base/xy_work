@@ -25,11 +25,7 @@ class ModuleData:
 
         self.config_path = self.template_path.joinpath("config")
 
-        self.xy_work_cfg_template_path = self.config_path.joinpath(
-            "xy_work_cfg.template"
-        )
-
-        self.xy_work_toml_template_path = self.config_path.joinpath(
+        self.work_toml_template_path = self.config_path.joinpath(
             "xy_work_toml.template"
         )
 

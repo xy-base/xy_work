@@ -3,13 +3,13 @@
 
 
 # ######################## xy_work项目配置 ###########################
-[xy_work_project]
+[project]
 
 # 项目名称, 仅支持英文
 name = "xy_test_work"
 
 # 项目标识
-identifier = "cd811dd62b4b4e8ca3c81f20d5215e0f"
+identifier = "9e7c9bf0a52b41dd90ad3b89ae32e7b4"
 
 # 项目名称, 支持中英文
 verbose_name = "xy_test_work"
@@ -18,15 +18,11 @@ verbose_name = "xy_test_work"
 description = "xy_test_work"
 
 # 项目路径
-path = "/mnt/bs-media/Workspace/project/opensource/xy-base/xy_work/test/xy_test_work"
-
-backup_path = "../workspace/backup"
-
-data_path = "../data/data.txt"
+path = "/mnt/bs-media/Workspace/project/opensource/xy-base/xy_work/samples/xy_test_work"
 
 # ######################## xy_work运行配置 ###########################
 
-[xy_work_runner]
+[runner]
 
 # 服务源码目录自动添加到sys.path 
 # 默认 当前项目目录下的 source/Runner

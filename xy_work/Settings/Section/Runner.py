@@ -29,7 +29,7 @@ class Runner(Section):
     runner: str | None
 
     def get_name(self) -> str | None:
-        return "xy_work_runner"
+        return "runner"
 
     def _load(self):
         self.path = Path(

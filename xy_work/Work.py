@@ -29,6 +29,7 @@ from xy_argparse.ArgParse import ArgParse
 
 class Work(ArgParse):
     settings: Settings | None = Settings()
+    module_data: ModuleData = ModuleData()
 
     def __init__(self):
         self.quick_default_info(xy_work.__name__)
@@ -114,19 +115,18 @@ class Work(ArgParse):
                         请进入到其他符合需求的目录进行工程创建。
                     """
                 )
-            module_data = ModuleData()
 
             settings_toml_template_string = (
-                module_data.xy_work_toml_template_path.read_text()
+                self.module_data.work_toml_template_path.read_text()
             )
             settings_toml_string = settings_toml_template_string.format(
-                xy_work_project_name=name,
-                xy_work_project_identifier=self.settings.project.identifier,
-                xy_work_project_verbose_name=name,
-                xy_work_project_description=name,
-                xy_work_project_path=project_path,
-                xy_work_runner_path=self.settings.runner.path,
-                xy_work_runner_runner=self.settings.runner.runner,
+                project_name=name,
+                project_identifier=self.settings.project.identifier,
+                project_verbose_name=name,
+                project_description=name,
+                project_path=project_path,
+                runner_path=self.settings.runner.path,
+                runner_runner=self.settings.runner.runner,
             )
             settings_toml_path = File.touch(settings_toml_path)
             if (
@@ -162,10 +162,8 @@ class Work(ArgParse):
                             and runner_py_path.exists()
                             and runner_py_path.is_file()
                         ):
-                            runner_py_string = (
-                                module_data.runner_py_template_path.read_text().format(
-                                    project_name=name
-                                )
+                            runner_py_string = self.module_data.runner_py_template_path.read_text().format(
+                                project_name=name
                             )
                             try:
                                 runner_py_path.write_text(runner_py_string)
