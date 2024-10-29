@@ -37,7 +37,6 @@ class Work(ArgParse):
     def main(self):
         self.default_parser()
         self.add_arguments()
-        self.parse_arguments()
         self.run_arguments()
 
     @property
