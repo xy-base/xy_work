@@ -91,7 +91,7 @@ python main.py -h
 
 ##### 3.配置定制
 
-> [点击查看样例 (xy_test_work)](./test/xy_test_work)
+> [点击查看样例 (xy_test_work)](./samples/xy_test_work)
 
 ## 许可证
 xy_work 根据 <木兰宽松许可证, 第2版> 获得许可。有关详细信息，请参阅 [LICENSE](LICENSE) 文件。

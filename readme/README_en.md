@@ -86,7 +86,7 @@ python main.py -h
 
 ##### 3.Configuration Customization
 
-> [Sample (xy_test_work)](../test/xy_test_work/)
+> [Sample (xy_test_work)](../samples/xy_test_work/)
 
 ## License
 xy_work is licensed under the <Mulan Permissive Software License，Version 2>. See the [LICENSE](../LICENSE) file for more info.

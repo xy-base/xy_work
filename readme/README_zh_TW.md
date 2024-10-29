@@ -92,7 +92,7 @@ python main.py -h
 
 ##### 3.配置客製化
 
-> [點擊看範例 (xy_test_work)](../test/xy_test_work)
+> [點擊看範例 (xy_test_work)](../samples/xy_test_work)
 
 ## 許可證
 xy_work 根據 <木蘭寬鬆許可證, 第2版> 獲得許可。有關詳細信息，請參閱 [LICENSE](../LICENSE) 文件。
