@@ -63,7 +63,6 @@ class Work(ArgParse):
                 -----project => 项目
                 -----runner  => 运行启动器
             """,
-            nargs="+",
         )
         self.add_argument(
             flag="-n",
@@ -71,7 +70,6 @@ class Work(ArgParse):
             help_text="""
                 项目名称 仅支持英文(当[command=project])
             """,
-            nargs="+",
         )
 
     def on_arguments(
