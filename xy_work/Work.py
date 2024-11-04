@@ -60,8 +60,8 @@ class Work(ArgParse):
             name="--command",
             help_text="""
                 命令:
-                -----project => 项目
-                -----runner  => 运行启动器
+                -----project => 项目,
+                -----runner  => 运行启动器,
             """,
         )
         self.add_argument(
