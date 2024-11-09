@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: UTF -*-
 __author__ = "余洋"
 __doc__ = "Work"
 """
@@ -23,7 +23,7 @@ import re
 from .ModuleData import ModuleData
 from argparse import Namespace
 
-from xy_file.File import File
+from xy_file.Object.File import File
 from xy_argparse.ArgParse import ArgParse
 
 
